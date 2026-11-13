@@ -1,6 +1,14 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
 
 app=FastAPI()
+
+
+class Users(BaseModel):
+    name:str
+    age:int
+
+
 
 @app.get('/')
 def home():
@@ -59,4 +67,13 @@ def items(productName:str=None,price:int=0):
     return{
         "Product Name: ":productName,
         "Price: ":price
+    }
+
+# Request Body-> Request given by user to server as an input(Post Request)
+
+@app.post("/create-user")
+def create_user(data:Users):
+    return{
+        "Message":"User Create",
+        "data":data
     }
