@@ -40,3 +40,23 @@ def users(userId:int):
 
 # Query Parameters
 
+@app.get('/users/')
+# optional Parameter
+def users(name: str=None):
+    return{
+        "Name":name
+    }
+
+@app.get('/product')
+# default Parameter
+def product(limit:int =10):
+    return{
+        "Limit":limit
+    }
+
+@app.get('/items')
+def items(productName:str=None,price:int=0):
+    return{
+        "Product Name: ":productName,
+        "Price: ":price
+    }
