@@ -1,6 +1,6 @@
 # CURD Opertation using List in TODO API
 
-from fastapi import FastAPI
+from fastapi import FastAPI,HTTPException
 
 from pydantic import BaseModel
 
@@ -61,4 +61,17 @@ def updateTodo(todoid:int,updateTodo:Todo):
             }
     return{
         "No data found"
+    }
+
+# Error Handing
+
+@app.get("/todoes/{id}")
+def myException(id:int):
+    if id !=1:
+        raise HTTPException(
+            status_code=404,
+            detail="ID nhi hai Babu"
+        )
+    return{
+        "7 Crore"
     }
